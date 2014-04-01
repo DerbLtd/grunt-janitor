@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kevin-smets/grunt-janitor.png?branch=master)](https://travis-ci.org/kevin-smets/grunt-janitor)
+
 # grunt-janitor
 
 > Code pattern checker for grunt. Cleanup on isle 4!
