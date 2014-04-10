@@ -23,8 +23,10 @@ module.exports = (grunt) ->
 
   # Configuration to be run (and then tested).
     janitor:
-      default:
-        options: {}
+      sass:
+        options: {
+#          tests: ['noId']
+        }
         files: [
           expand: true
           src: ["test.sass"]
@@ -44,6 +46,6 @@ module.exports = (grunt) ->
   #  grunt.registerTask('test', ['clean', 'janitor', 'nodeunit']);
   grunt.registerTask "test", [
     "clean"
-    "janitor"
+    "janitor:sass"
   ]
   return

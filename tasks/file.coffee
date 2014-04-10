@@ -1,24 +1,34 @@
 "use strict"
 grunt = require("grunt")
 
-# get the extension of the given path DUMB-ASS
-_getExtension = ( path ) ->
-  path = path.toString()
-  path.substr( path.lastIndexOf(".") + 1, path.length )
-
 # escape the given string to a proper regex format
 _escapeRegex = ( str ) ->
   str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
 
-# convert to file
+# convert to janitor file
 file = ( path )->
-  grunt.log.write 'file called: ' + path + "\n"
 
-# find
-find = ( file, searchfor ) ->
-  grunt.log.write 'find called: ' + searchfor + "\n"
+  _content = undefined
+  _fileType = undefined
+  _path = path
+
+  # get the files content
+  getContent = () ->
+    if( _content? )
+      return _content
+    _content = grunt.file.read _path
+
+  # get the files extension
+  getFiletype = () ->
+    if ( _fileType )
+      return _fileType
+    path = _path.toString()
+    _fileType = path.substr( path.lastIndexOf(".") + 1, path.length )
+
+  a =
+    getContent: getContent
+    getFiletype: getFiletype
 
 # export the modules
 module.exports =
   file: file
-  find: find
