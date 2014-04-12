@@ -28,4 +28,4 @@ module.exports = ( grunt ) ->
     # iterate files
     this.files.forEach ( path )->
       file = filinator.file path.src
-      test.executeTests file, options.tests
+      test.executeTests file, options

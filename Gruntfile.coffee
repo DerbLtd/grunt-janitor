@@ -25,14 +25,13 @@ module.exports = (grunt) ->
     janitor:
       sass:
         options: {
-#          tests: ['noId']
+          # tests: ['noId']
         }
         files: [
           expand: true
           src: ["test.sass"]
           cwd: "test/fixtures/"
         ]
-
 
   # Unit tests.
     nodeunit:
