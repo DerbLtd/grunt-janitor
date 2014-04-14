@@ -3,15 +3,15 @@ test = require './../test'
 report = require './../report'
 grunt = require 'grunt'
 
-test.registerTest( 'noId', 'Dissalow ids in ', ()->
+test.registerTest( 'noId', 'Disallow ids in ', ()->
   report.set( 'noid' )
   grunt.log.write this.file + "\n"
 )
 
-test.registerTest( 'noComments', 'Dissalow comments', ()->
+test.registerTest( 'noComments', 'Disallow comments', ()->
   report.set( 'noComments' )
 )
 
-test.registerTest( 'tmpPrintTest', 'Dissalow comments', ()->
+test.registerTest( 'tmpPrintTest', 'Disallow comments', ()->
   report.prettyPrint()
 )
