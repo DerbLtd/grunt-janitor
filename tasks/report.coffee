@@ -20,11 +20,12 @@ set = ( value ) ->
   _result.tests.push value
 
 prettyPrint = () ->
-  grunt.log.write "\n"
-  grunt.log.write 'printing the test results', "\n"
-  grunt.log.write 'oooh you sooo pretty love you long time', "\n"
+  grunt.log.writeln ''
+  grunt.log.writeln "The results are in:"
+  grunt.log.writeln ''
+
   for test in _result.tests
-    grunt.log.write "\t", test, "\n"
+    grunt.log.writeln "- ", test
 
 module.exports =
   set: set
