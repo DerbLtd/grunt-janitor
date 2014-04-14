@@ -19,13 +19,13 @@ set = ( value ) ->
 #
   _result.tests.push value
 
-prittyPrint = () ->
+prettyPrint = () ->
   grunt.log.write "\n"
   grunt.log.write 'printing the test results', "\n"
-  grunt.log.write 'oooh you sooo pritty love you long time', "\n"
+  grunt.log.write 'oooh you sooo pretty love you long time', "\n"
   for test in _result.tests
     grunt.log.write "\t", test, "\n"
 
 module.exports =
   set: set
-  prittyPrint: prittyPrint
+  prettyPrint: prettyPrint

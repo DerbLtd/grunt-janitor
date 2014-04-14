@@ -13,5 +13,5 @@ test.registerTest( 'noComments', 'Dissalow comments', ()->
 )
 
 test.registerTest( 'tmpPrintTest', 'Dissalow comments', ()->
-  report.prittyPrint()
+  report.prettyPrint()
 )
