@@ -43,4 +43,4 @@ prittyPrint = () ->
 
 module.exports =
   set: set
-  prettyPrint: prettyPrint
+  prittyPrint: prittyPrint

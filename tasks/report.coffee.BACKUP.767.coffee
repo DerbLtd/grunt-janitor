@@ -32,6 +32,7 @@ set = ( key, severity, file, lineNumbers, description ) ->
   a = _getLines( lineNumbers, file )
   _result.tests[key]['locations'] = _result.tests[key]['locations'].concat a
 
+<<<<<<< HEAD
 prittyPrint = () ->
   grunt.log.write "\n\n"
   grunt.log.write "Test results:", "\n"
@@ -40,6 +41,15 @@ prittyPrint = () ->
     for loc in value.locations
       grunt.log.write "\tfile: \t", loc.filepath + '(' + loc.number + '): ', loc.content, "\n"
   grunt.log.write "\n\n"
+=======
+prettyPrint = () ->
+  grunt.log.writeln ''
+  grunt.log.writeln "The results are in:"
+  grunt.log.writeln ''
+
+  for test in _result.tests
+    grunt.log.writeln "- ", test
+>>>>>>> 534e279377a4b7a93a5c7abe27f233a6da659aa1
 
 module.exports =
   set: set
