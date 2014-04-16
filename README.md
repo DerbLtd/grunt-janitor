@@ -83,6 +83,9 @@ grunt.initConfig({
   },
 });
 ```
+## Report
+
+Run "node node_modules/.bin/http-server tasks/reportingTool/" and point your favourite browser to http://localhost:8080
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
