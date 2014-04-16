@@ -4,17 +4,19 @@
 "use strict"
 grunt = require "grunt"
 report = require './report'
+util = require './util'
 
 _tests = {}
 
-_executeTest = ( testname, testOptions, file, taskOptions ) ->
+_executeTest = ( testname, variation, testOptions, file, taskOptions ) ->
   if !_tests[ testname ]
-    grunt.log.write 'not found', "\n"
+    grunt.log.error 'The test ', testname, ' could not be located.', "\n"
     return false
   thisWhomWeCallThis =
     test:
-      name: testname,
+      name: testname
       options: testOptions
+      variation: variation
     taskOptions: taskOptions
     file: file
   _tests[testname].fn.apply thisWhomWeCallThis, testOptions
@@ -43,7 +45,12 @@ registerTest = ( key, description, fn, options ) ->
 executeTests = ( file, options ) ->
   tests = options.tests
   for testname, test of tests
-    _executeTest testname, test, file, options
+    grunt.log.writeln testname
+    if util.isArray( test )
+      _executeTest testname, false, test, file, options
+    else
+      for variationName, variation of test
+        _executeTest testname, variationName, variation, file, options
   true
 
 # export the modules

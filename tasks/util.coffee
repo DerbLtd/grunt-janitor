@@ -12,7 +12,11 @@ regexGet = ( variable ) ->
     return new RegExp( regexEscape(variable), 'm')
   false
 
+isArray = ( varName ) ->
+  Object.prototype.toString.call( varName ) is "[object Array]"
+
 # export the modules
 module.exports =
   regexEscape: regexEscape
   regexGet: regexGet
+  isArray: isArray

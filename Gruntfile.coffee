@@ -25,8 +25,12 @@ module.exports = (grunt) ->
       sass:
         options: {
           tests:
-#            'default:present': ['.touch0101']
-            'default:absent': ['.touch0108', 'error']
+            'default:excludes':
+              'no ids': ['#', 'error']
+              'no unbuffered comments': [ /(\/\\*)|(\\*\/)/i, 'error']
+              'no hardcoded color': [': #', 'error']
+              'no touch 08': ['.touch0108', 'error']
+#            'default:doneSingle': ['test']
         }
         files: [
           expand: true
@@ -49,3 +53,21 @@ module.exports = (grunt) ->
     "janitor:sass"
   ]
   return
+
+#echo "\nCoffeeScript: use strict\n"
+#git --no-pager grep --break --heading --files-without-match -nP "^'use strict'|\"use strict\"" -- '*.coffee'
+#
+#echo "\nJade: use unbuffered comments\n"
+#git --no-pager grep --break --heading -nP '//\s?(?![-, www])' -- '*.jade'
+#
+#echo "\nSass: use unbuffered comments\n"
+#git --no-pager grep --break --heading -nP '(/\*)|(\*/)' -- '*.sass'
+#
+#echo "\nSass: don't use hardcoded color codes\n"
+#git --no-pager grep --break --heading -nP ': #' -- '*.sass'
+#
+#echo "\nCoffeeScript: use unbuffered comments\n"
+#git --no-pager grep --break --heading -nP '###' -- '*.coffee'
+#
+#echo "\nCoffeeScript: no console.log\n"
+#git --no-pager grep --break --heading -nP 'console\.log' -- '*.coffee'

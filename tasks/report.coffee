@@ -23,7 +23,10 @@ _getLines = ( lineNumbers, file )->
 _getLocations = ( file, lineNumbers )->
   return _getLines( )
 
-set = ( key, severity, file, lineNumbers, description ) ->
+set = ( test, file, severity, lineNumbers, description ) ->
+  key = test.name
+  if test.variation?
+    key = key + " " + test.variation
   if !_result.tests[key]?
     _result.tests[key] =
       description: description
@@ -32,7 +35,7 @@ set = ( key, severity, file, lineNumbers, description ) ->
   a = _getLines( lineNumbers, file )
   _result.tests[key]['locations'] = _result.tests[key]['locations'].concat a
 
-prittyPrint = () ->
+prettyPrint = () ->
   grunt.log.write "\n\n"
   grunt.log.write "Test results:", "\n"
   for key, value of _result.tests

@@ -55,4 +55,4 @@ module.exports = ( grunt ) ->
       test.executeTests file, options
 
     # print result
-    report.prittyPrint()
+    report.prettyPrint()
