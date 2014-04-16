@@ -5,6 +5,7 @@ module.exports = ( grunt ) ->
   filinator = require './file'
   test = require './test'
   report = require './report'
+  server = require '.bin/http-server'
 
   loadFile = (path)->
     if !grunt.file.exists path
@@ -37,7 +38,6 @@ module.exports = ( grunt ) ->
     packages = getPackages tests
     for thapack in packages
       loadPackage thapack, packageDir
-
 
   grunt.registerMultiTask 'janitor', 'Code pattern checker for grunt. Cleanup on isle 4!', () ->
     options = @options(
