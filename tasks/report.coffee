@@ -1,30 +1,45 @@
 "use strict"
 grunt = require 'grunt'
 
-_severities =
-  INFO: 'info'
-  WARNING: 'Warning'
-  ERROR: 'Error'
-
 _result =
-  tests: []
+  tests: {}
 
-set = ( value ) ->
-# required params
-#   severity: enum stored in this file
-#   filename: from file object
-#   filepath: from file object
-#   line number: from test
-#   Description
-#
-  _result.tests.push value
+_getLine = ( lineNumber, file )->
+  o =
+    filename: file.getFileName()
+    filepath: file.getFilePath()
+    number: lineNumber
+    content: file.getLine(lineNumber)
+
+_getLines = ( lineNumbers, file )->
+  a = []
+  if typeof lineNumbers == 'number'
+    a.push( _getLine(lineNumbers, file) )
+  else if typeof lineNumbers == 'object'
+    for val in lineNumbers
+      a.push( _getLine(val, file) )
+  a
+
+_getLocations = ( file, lineNumbers )->
+  return _getLines( )
+
+set = ( key, severity, file, lineNumbers, description ) ->
+  if !_result.tests[key]?
+    _result.tests[key] =
+      description: description
+      severity: severity
+      locations: []
+  a = _getLines( lineNumbers, file )
+  _result.tests[key]['locations'] = _result.tests[key]['locations'].concat a
 
 prittyPrint = () ->
-  grunt.log.write "\n"
-  grunt.log.write 'printing the test results', "\n"
-  grunt.log.write 'oooh you sooo pritty love you long time', "\n"
-  for test in _result.tests
-    grunt.log.write "\t", test, "\n"
+  grunt.log.write "\n\n"
+  grunt.log.write "Test results:", "\n"
+  for key, value of _result.tests
+    grunt.log.write "\t" + value.severity, "'" + key + "' ", value.description, "\n"
+    for loc in value.locations
+      grunt.log.write "\tfile: \t", loc.filepath + '(' + loc.number + '): ', loc.content, "\n"
+  grunt.log.write "\n\n"
 
 module.exports =
   set: set

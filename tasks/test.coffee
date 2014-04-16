@@ -6,25 +6,18 @@ grunt = require "grunt"
 report = require './report'
 
 _tests = {}
-_testsNames = undefined
 
-_getTestsNames = () ->
-  if _testsNames?
-    return _testsNames
-  _testsNames = []
-  for key, value of _tests
-    _testsNames.push key
-  _testsNames
-
-_executeTest = ( key, file, options ) ->
-  if !_tests[ key ]
+_executeTest = ( testname, testOptions, file, taskOptions ) ->
+  if !_tests[ testname ]
+    grunt.log.write 'not found', "\n"
     return false
   thisWhomWeCallThis =
     test:
-      key: key
-    options: options
+      name: testname,
+      options: testOptions
+    taskOptions: taskOptions
     file: file
-  _tests[key].fn.apply thisWhomWeCallThis
+  _tests[testname].fn.apply thisWhomWeCallThis, testOptions
 
 #
 # public methods
@@ -38,7 +31,6 @@ _executeTest = ( key, file, options ) ->
 registerTest = ( key, description, fn, options ) ->
   if typeof fn != 'function'
     return false
-  _testsNames = undefined
   _tests[key] =
     fn: fn
     description: description
@@ -50,10 +42,8 @@ registerTest = ( key, description, fn, options ) ->
 # @param  array|undefined _tests contains the _tests name to be executed of all if undefined
 executeTests = ( file, options ) ->
   tests = options.tests
-  tests = if !tests? then _getTestsNames() else tests
-  options.tests = tests
-  for test in tests
-    _executeTest test, file, options
+  for testname, test of tests
+    _executeTest testname, test, file, options
   true
 
 # export the modules
