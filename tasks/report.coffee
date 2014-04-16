@@ -26,7 +26,7 @@ _getLocations = ( file, lineNumbers )->
 set = ( test, file, severity, lineNumbers, description ) ->
   key = test.name
   if test.variation?
-    key = key + " " + test.variation
+    key = key + ":" + test.variation
   if !_result.tests[key]?
     _result.tests[key] =
       description: description
@@ -42,6 +42,7 @@ prettyPrint = () ->
     grunt.log.write "\t" + value.severity, "'" + key + "' ", value.description, "\n"
     for loc in value.locations
       grunt.log.write "\tfile: \t", loc.filepath + '(' + loc.number + '): ', loc.content, "\n"
+    grunt.log.write "\n"
   grunt.log.write "\n\n"
 
 module.exports =

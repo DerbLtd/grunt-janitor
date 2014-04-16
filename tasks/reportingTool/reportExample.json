@@ -1,0 +1,41 @@
+{
+    "build": "reference to grunt run",
+    "dateCreate": "timestamp",
+    "files": {
+        "jfid-0": {
+            "name": "test",
+            "filetype": "sass",
+            "path": "/Users/maximepassenier/Development/grunt-janitor/grunt-janitor/test/fixtures/test.sass"
+        },
+        "jfid-1": {
+            "name": "test",
+            "filetype": "coffee",
+            "path": "/Users/maximepassenier/Development/grunt-janitor/grunt-janitor/test/fixtures/test.coffee"
+        }
+    },
+    "tests": {
+        "jtid-0": {
+            "name": "default:excludes",
+            "variation": "no ids",
+            "arguments": [": #", "error"],
+            "description": "The string should be excluded"
+        },
+        "jtid-1": {
+            "name": "default:includes",
+            "variation": "use namespace",
+            "arguments": [],
+            "description": "Use a namespace"
+        },
+        "jtid-2": {
+            "name": "default:includes",
+            "variation": "use strict",
+            "arguments": [],
+            "description": "Set use strict in beginning of file"
+        }
+    },
+    "results": [
+        {"file": "jfid-0", "test": "jtid-0", "line": 10},
+        {"file": "jfid-0", "test": "jtid-1", "line": 58},
+        {"file": "jfid-1", "test": "jtid-2", "line": 12}
+    ]
+}
