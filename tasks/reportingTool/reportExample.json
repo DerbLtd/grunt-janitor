@@ -33,9 +33,9 @@
             "description": "Set use strict in beginning of file"
         }
     },
-    "results": [
-        {"file": "jfid-0", "test": "jtid-0", "line": 10},
-        {"file": "jfid-0", "test": "jtid-1", "line": 58},
-        {"file": "jfid-1", "test": "jtid-2", "line": 12}
-    ]
+    "results": {
+        "jrid-0": {"file": "jfid-0", "test": "jtid-0", "line": 10},
+        "jrid-1": {"file": "jfid-0", "test": "jtid-1", "line": 58},
+        "jrid-2": {"file": "jfid-1", "test": "jtid-2", "line": 12}
+    }
 }
