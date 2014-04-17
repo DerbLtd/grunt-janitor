@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>El janitor</title>
+    <title>El Janitor</title>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body ng-app="main" ng-controller="mainController">
 <h1 class="gj-title">El Janitor</h1>
 <div class="gj-report clearfix" ng-repeat="result in report.results">
-    <div class="gj-report-title">Report for {{report.files[result.file].path}}</div>
-    <div class="gj-report-result">Line {{result.line}}: {{report.tests[result.test].variation}}</div>
-    <div class="gj-report-result">{{report.tests[result.test].description}}</div>
+    <div class="gj-report-title"><i class="fa fa-file-text-o" alt="File"></i> Report for {{report.files[result.file].path}}</div>
+    <div class="gj-report-result"><i class="fa fa-list-ol" alt="Line number"></i> {{result.line}}: {{report.tests[result.test].variation}}</div>
+    <div class="gj-report-result"><i class="fa fa-comment-o" alt="Test description"></i> {{report.tests[result.test].description}}</div>
 </div>
 </body>
 </html>

@@ -28,8 +28,7 @@ module.exports = (grunt) ->
             'default:excludes':
               'no ids': ['#', 'error']
               'no unbuffered comments': [ /(\/\\*)|(\\*\/)/i, 'error']
-              'no hardcoded color': [': #', 'bad idea']
-              'no touch 08': ['.touch0108', 'warning']
+              'no hardcoded colors': [': #', 'bad idea']
 #            'default:doneSingle': ['test']
         }
         files: [
