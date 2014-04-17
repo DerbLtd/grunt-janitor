@@ -60,8 +60,9 @@ _markResult = ( type, id )->
 _getSeverity = ( severity ) ->
   return _conf.severities.mapping[severity] if _conf.severities.mapping[severity]
   id = _getResultId( 'severities' )
-  _conf.severities.mapping[severity] =
-    name: id
+  _conf.severities.mapping[severity] =  id
+  _result.severities[ id ] =
+    name: severity
   id
 
 _registerResult = ( file, test, lineNr, severity ) ->
@@ -69,7 +70,7 @@ _registerResult = ( file, test, lineNr, severity ) ->
   _markResult( 'tests', test.id )
   _markResult( 'files', file.id() )
   _markResult( 'severities', idSeverity )
-  id = _getResultId()
+  id = _getResultId( 'results' )
   _result.results[ id ] =
     file: file.id()
     test: test.id
@@ -85,7 +86,8 @@ _registerResult = ( file, test, lineNr, severity ) ->
 registerTest = (name, variation, args)->
   id = _getResultId( 'tests' )
   _result.tests[ id ] =
-    name: name
+    name: if variation? then name + ' - ' + variation else name
+    test: name
     variation: variation
     arguments: args
   id
@@ -111,14 +113,15 @@ set = ( test, file, severity, lineNumbers, description ) ->
 prettyPrint = () ->
   grunt.log.write "\n\n"
   grunt.log.write "Test results:", "\n"
-  grunt.log.write "\t", "currently working on", "\n"
-  return true
-  for key, value of _result.tests
-    grunt.log.write "\t" + value.severity, "'" + key + "' ", value.description, "\n"
-    for loc in value.locations
-      grunt.log.write "\tfile: \t", loc.filepath + '(' + loc.number + '): ', loc.content, "\n"
+  for idResult, result of _result.results
+    grunt.log.writeln idResult
+    grunt.log.writeln '   file      ', _result.files[result.file]['name'] + " (id:" + result.file + ")"
+    grunt.log.writeln '   test      ', _result.tests[result.test]['name'] + " (id:" + result.test + ")"
+    grunt.log.writeln '   severity  ', _result.severities[result.severity]['name'] + " (id:" + result.severity + ")"
+    grunt.log.writeln '   line      ', result.line
+    grunt.log.writeln '   content    "' + result.content + '"'
     grunt.log.write "\n"
-  grunt.log.write "\n\n"
+
 
 module.exports =
   set: set
