@@ -1,6 +1,6 @@
 @font-face {
     font-family: "roboto";
-    src: url("font/roboto-light.ttf?p=2") format("truetype"), url("font/roboto-light.woff?p=2") format("woff"), url("font/roboto-light.eot?p=2") format("embedded-opentype"), url("font/roboto-light.svg?p=2") format("svg");
+    src: url("../fonts/roboto-light.ttf?p=2") format("truetype"), url("../fonts/roboto-light.woff?p=2") format("woff"), url("../fonts/roboto-light.eot?p=2") format("embedded-opentype"), url("../fonts/roboto-light.svg?p=2") format("svg");
     font-weight: 300;
 }
 
@@ -11,43 +11,43 @@ body{
     margin: 0;
 }
 
-.janitor-title{
+.gj-title {
     padding-left: 30px;
     color: #9DE0AD;
 }
 
-.report{
+.gj-report {
     width: 100%;
 }
 
-.report,
-.report-result{
+.gj-report,
+.gj-report-result {
     box-sizing: border-box;
 }
 
-.report,
-.report-title,
-.report-result{
+.gj-report,
+.gj-report-title,
+.gj-report-result {
     padding: 15px
 }
 
-.report-title{
+.gj-report-title {
     background-color: #594F4F;
     color: #E5FCC2;
 }
 
-.report-result{
+.gj-report-result {
     float: left;
     width: 50%;
 }
 
-.report-result:nth-child(odd){
+.gj-report-result:nth-child(odd){
     border-bottom: 1px solid #9DE0AD;
     background-color: #9DE0AD;
     color: #547980;
 }
 
-.report-result:nth-child(even){
+.gj-report-result:nth-child(even){
     border-bottom: 1px solid #9DE0AD;
     border-left: 1px solid #9DE0AD;
     background-color: #45ADA8;
