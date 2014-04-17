@@ -15,8 +15,14 @@ regexGet = ( variable ) ->
 isArray = ( varName ) ->
   Object.prototype.toString.call( varName ) is "[object Array]"
 
+writeObj = ( obj ) ->
+  for key, value of obj
+    grunt.log.writeln key, value
+  grunt.log.write "\n"
+
 # export the modules
 module.exports =
   regexEscape: regexEscape
   regexGet: regexGet
   isArray: isArray
+  writeObj: writeObj

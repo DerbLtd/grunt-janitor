@@ -14,6 +14,7 @@ _executeTest = ( testname, variation, testOptions, file, taskOptions ) ->
     return false
   thisWhomWeCallThis =
     test:
+      id: report.registerTest( testname, variation, testOptions )
       name: testname
       options: testOptions
       variation: variation
@@ -45,7 +46,6 @@ registerTest = ( key, description, fn, options ) ->
 executeTests = ( file, options ) ->
   tests = options.tests
   for testname, test of tests
-    grunt.log.writeln testname
     if util.isArray( test )
       _executeTest testname, false, test, file, options
     else

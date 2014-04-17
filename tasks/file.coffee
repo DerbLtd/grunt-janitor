@@ -1,6 +1,7 @@
 "use strict"
 grunt = require "grunt"
 util = require "./util"
+report = require "./report"
 
 # escape the given string to a proper regex format
 _escapeRegex = ( str ) ->
@@ -8,6 +9,7 @@ _escapeRegex = ( str ) ->
 
 # convert to janitor file
 file = ( path )->
+
   _content = undefined
   _contentByLine = undefined
   _fileName = undefined
@@ -57,6 +59,11 @@ file = ( path )->
   getLine = ( lineNumber )->
     getContentByLine()[ lineNumber - 1 ]
 
+  getId = ()->
+    _id
+
+  _id = report.registerFile( getFileName(), getFiletype(), getFilePath() )
+
   a =
     getContent: getContent
     getContentByLine: getContentByLine
@@ -65,6 +72,7 @@ file = ( path )->
     getFilePath: getFilePath
     getLine: getLine
     findLineNumbers: findLineNumbers
+    id: getId
 
 
 # export the modules
