@@ -4,24 +4,27 @@ util = require './util'
 
 _conf =
   files:
-    prefix: 'jfid-'
+    prefix: 'jFid-'
     autoIncrement: 0
   tests:
-    prefix: 'jtid-'
+    prefix: 'jTid-'
     autoIncrement: 0
   results:
-    prefix: 'jrid-'
+    prefix: 'jRid-'
     autoIncrement: 0
+  severities:
+    prefix: 'jSid-'
+    autoIncrement: 0
+    mapping: {}
 
 _result =
   files: {}
   tests: {}
+  severities: {}
   results: {}
 
 _getLine = ( lineNumber, file )->
   o =
-    filename: file.getFileName()
-    filepath: file.getFilePath()
     number: lineNumber
     content: file.getLine(lineNumber)
 
@@ -54,6 +57,31 @@ _markResult = ( type, id )->
     _result[type][id]['marks'] = _result[type][id]['marks'] + 1
   id
 
+_getSeverity = ( severity ) ->
+  return _conf.severities.mapping[severity] if _conf.severities.mapping[severity]
+  id = _getResultId( 'severities' )
+  _conf.severities.mapping[severity] =
+    name: id
+  id
+
+_registerResult = ( file, test, lineNr, severity ) ->
+  idSeverity = _getSeverity( severity )
+  _markResult( 'tests', test.id )
+  _markResult( 'files', file.id() )
+  _markResult( 'severities', idSeverity )
+  id = _getResultId()
+  _result.results[ id ] =
+    file: file.id()
+    test: test.id
+    severity: idSeverity
+    line: lineNr
+    content: if lineNr then file.getLine( lineNr ) else ''
+#  grunt.log.writeln  _result.results[ id ]['file']
+#  grunt.log.writeln  _result.results[ id ]['test']
+#  grunt.log.writeln  _result.results[ id ]['line']
+#  grunt.log.writeln  _result.results[ id ]['content']
+  id
+
 registerTest = (name, variation, args)->
   id = _getResultId( 'tests' )
   _result.tests[ id ] =
@@ -71,25 +99,19 @@ registerFile = ( name, filetype, path )->
   id
 
 set = ( test, file, severity, lineNumbers, description ) ->
-  _markResult( 'tests', test.id )
-  _markResult( 'files', file.id() )
-#  grunt.log.writeln file.id
+  if util.isArray lineNumbers
+    for lineNumber in lineNumbers
+      _registerResult file, test, lineNumber, severity
+  else if !isNaN(parseFloat(lineNumbers)) && isFinite(lineNumbers)
+    _registerResult file, test, lineNumber, severity
+  else
+    _registerResult file, test, false, severity
   return true
-  key = test.name
-  if test.variation?
-    key = key + ":" + test.variation
-  if !_result.tests[key]?
-    _result.tests[key] =
-      description: description
-      severity: severity
-      locations: []
-  a = _getLines( lineNumbers, file )
-  _result.tests[key]['locations'] = _result.tests[key]['locations'].concat a
 
 prettyPrint = () ->
   grunt.log.write "\n\n"
   grunt.log.write "Test results:", "\n"
-  grunt.log.write "currently working on", "\n"
+  grunt.log.write "\t", "currently working on", "\n"
   return true
   for key, value of _result.tests
     grunt.log.write "\t" + value.severity, "'" + key + "' ", value.description, "\n"
