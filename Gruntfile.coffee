@@ -27,9 +27,24 @@ module.exports = (grunt) ->
           tests:
             'default:excludes':
               'no ids': ['#', 'error']
-              'no unbuffered comments': [ /(\/\\*)|(\\*\/)/i, 'error']
-              'no hardcoded colors': [': #', 'bad idea']
+#              'no unbuffered comments': [ /(\/\\*)|(\\*\/)/i, 'error']
+#              'no hardcoded colors': [': #', 'bad idea']
 #            'default:doneSingle': ['test']
+          "testHowitwouldbe":
+            "jusftify-noid": # naam van de test
+              "default:justify": [] # de test functie en zijn parameters
+              "chain":  # optionele paramater == de tests die uitegevoerd moeten worden voor deze
+                "no-id": # naam van de test
+                  "default:excludes": [
+                    '#',
+                    'error'
+                    ] # de test functie en zijn parameters
+
+# op deze manier kunnen we tests aan elkaar chainen
+# elke test returned dan een result object
+# deze results kunnen dan worden herwerkt door een bovenliggende test
+
+
         }
         files: [
           expand: true
