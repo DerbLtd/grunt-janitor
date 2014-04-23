@@ -1,4 +1,5 @@
 "use strict"
+
 grunt = require 'grunt'
 util = require './util'
 
