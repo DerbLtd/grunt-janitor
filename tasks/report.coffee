@@ -118,10 +118,21 @@ set = ( test, file, severity, lineNumbers, description ) ->
 
 prettyPrint = () ->
 
+  files = {}
+  results = {}
+  tests = {}
+
+  report =
+    files: files
+    results: results
+    tests: tests
+
   grunt.log.subhead "Test results:"
   grunt.log.writeln ''
 
   for idResult, result of _result.results
+    # Logger
+
     color = ''
     switch _result.severities[result.severity]['name']
       when _severities.INFO then color = 'blue'
@@ -135,6 +146,14 @@ prettyPrint = () ->
     grunt.log.writeln '   line      ', result.line
     grunt.log.writeln '   content    "' + result.content + '"'
     grunt.log.writeln ''
+
+    # Reporter
+
+    files[result.file] = _result.files[result.file]
+    tests[result.test] = _result.tests[result.test]
+
+  grunt.file.write 'tasks/reportingTool/data/report.json', JSON.stringify(report, null, '\t')
+  grunt.log.verbose.writeln JSON.stringify(report, null, '\t')
 
 module.exports =
   set: set
