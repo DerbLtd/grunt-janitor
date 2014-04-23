@@ -2,18 +2,23 @@
 grunt = require 'grunt'
 util = require './util'
 
+_severities =
+  INFO: "info"
+  WARNING: "warning"
+  ERROR: "error"
+
 _conf =
   files:
-    prefix: 'jFid-'
+    prefix: 'gjFileId-'
     autoIncrement: 0
   tests:
-    prefix: 'jTid-'
+    prefix: 'gjTestId-'
     autoIncrement: 0
   results:
-    prefix: 'jRid-'
+    prefix: 'gjResultId-'
     autoIncrement: 0
   severities:
-    prefix: 'jSid-'
+    prefix: 'gjSeverityId-'
     autoIncrement: 0
     mapping: {}
 
@@ -111,17 +116,24 @@ set = ( test, file, severity, lineNumbers, description ) ->
   return true
 
 prettyPrint = () ->
-  grunt.log.write "\n\n"
-  grunt.log.write "Test results:", "\n"
+
+  grunt.log.subhead "Test results:"
+  grunt.log.writeln ''
+
   for idResult, result of _result.results
-    grunt.log.writeln idResult
+    color = ''
+    switch _result.severities[result.severity]['name']
+      when _severities.INFO then color = 'blue'
+      when _severities.WARNING then color = 'yellow'
+      when _severities.ERROR then color = 'red'
+
+    grunt.log.writeln (_result.severities[result.severity]['name'] + ':')[color], idResult
     grunt.log.writeln '   file      ', _result.files[result.file]['name'] + " (id:" + result.file + ")"
     grunt.log.writeln '   test      ', _result.tests[result.test]['name'] + " (id:" + result.test + ")"
     grunt.log.writeln '   severity  ', _result.severities[result.severity]['name'] + " (id:" + result.severity + ")"
     grunt.log.writeln '   line      ', result.line
     grunt.log.writeln '   content    "' + result.content + '"'
-    grunt.log.write "\n"
-
+    grunt.log.writeln ''
 
 module.exports =
   set: set

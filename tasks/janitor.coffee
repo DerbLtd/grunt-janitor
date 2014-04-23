@@ -5,7 +5,6 @@ module.exports = ( grunt ) ->
   filinator = require './file'
   test = require './test'
   report = require './report'
-#  server = require '.bin/http-server'
 
   loadFile = (path)->
     if !grunt.file.exists path
