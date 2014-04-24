@@ -7,6 +7,10 @@ test.registerTest( 'default:includes', 'is the following string/regex present', 
   this.file.getContentByLine()
 )
 
+test.registerTest( 'default:justify', 'is the chained test justified', ( severity )->
+  chainTest = this.test.chain
+)
+
 test.registerTest( 'default:excludes', 'is the following string/regex excluded', ( regexOrString, severity )->
   lineNrs = this.file.findLineNumbers( regexOrString )
   if lineNrs
