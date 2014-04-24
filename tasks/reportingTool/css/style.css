@@ -5,7 +5,11 @@
 }
 
 body{
-    background-color: #45ADA8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background-color: #262626;
+    color: gold;
     font-family: "roboto";
     font-weight: 300;
     margin: 0;
@@ -13,7 +17,6 @@ body{
 
 .gj-title {
     padding-left: 30px;
-    color: #9DE0AD;
 }
 
 .gj-report {
@@ -25,15 +28,18 @@ body{
     box-sizing: border-box;
 }
 
-.gj-report,
+.gj-report-last-child {
+    border-bottom: 1px solid #594F4F;
+}
+
 .gj-report-title,
 .gj-report-result {
-    padding: 15px
+    padding: 5px
 }
 
 .gj-report-title {
     background-color: #594F4F;
-    color: #E5FCC2;
+    color: white;
 }
 
 .gj-report-result {
@@ -41,17 +47,21 @@ body{
     width: 50%;
 }
 
-.gj-report-result:nth-child(odd){
-    border-bottom: 1px solid #9DE0AD;
-    background-color: #9DE0AD;
-    color: #547980;
+.gj-footer {
+    border-top: 1px dotted #594F4F;
+    bottom: 0;
+    font-size: 12px;
+    height: 22px;
+    left: 0;
+    line-height: 20px;
+    position: fixed;
+    right: 0;
+    text-align: center;
 }
 
-.gj-report-result:nth-child(even){
-    border-bottom: 1px solid #9DE0AD;
-    border-left: 1px solid #9DE0AD;
-    background-color: #45ADA8;
-    color: #E5FCC2;
+.gj-url {
+    color: gold;
+    font-weight: bold;
 }
 
 .clearfix:after {
