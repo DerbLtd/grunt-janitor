@@ -35,10 +35,7 @@ module.exports = (grunt) ->
               "default:justify": [] # de test functie en zijn parameters
               "chain":  # optionele paramater == de tests die uitegevoerd moeten worden voor deze
                 "no-id": # naam van de test
-                  "default:excludes": [
-                    '#',
-                    'error'
-                    ] # de test functie en zijn parameters
+                  "default:excludes": ['#', 'error'] # de test functie en zijn parameters
 
 # op deze manier kunnen we tests aan elkaar chainen
 # elke test returned dan een result object
