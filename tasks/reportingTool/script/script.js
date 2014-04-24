@@ -26,19 +26,58 @@ var app = angular.module("main", []);
 app.controller("mainController", [
     '$scope', '$log', function($scope) {
 
+        $scope.filterInfoActive = true;
+        $scope.filterWarningActive = true;
+        $scope.filterErrorActive = true;
+
+        $scope.isFilterInfoActive = function() { return $scope.filterInfoActive }
+        $scope.isFilterWarningActive = function() { return $scope.filterWarningActive }
+        $scope.isFilterErrorActive = function() { return $scope.filterErrorActive }
+
+        $scope.toggleFilterInfo = function() { $scope.filterInfoActive = !$scope.filterInfoActive }
+        $scope.toggleFilterWarning = function() { $scope.filterWarningActive = !$scope.filterWarningActive}
+        $scope.toggleFilterError = function() { $scope.filterErrorActive = !$scope.filterErrorActive }
+
+        $scope.errors = undefined
+        $scope.warnings = undefined
+        $scope.infos = undefined
+
         loadJSON(function(response) {
             // Parse JSON string into object
             jsonData = JSON.parse(response);
-            $scope.report = {
-                files: jsonData.files,
-                tests: jsonData.tests,
-                results: jsonData.results
-            };
+            $scope.report = jsonData;
             $scope.$apply()
-        });
+        })
 
         $scope.getFileName = function(result) {
             return $scope.report.files[result].name;
-        };
+        }
+
+        $scope.getResultSeverity = function(result) {
+            return $scope.report.severities[result.severity].name
+        }
+
+        $scope.isSeverityFilterActive = function(result) {
+            var severity = $scope.getResultSeverity(result);
+            switch (severity) {
+                case "error":
+                    return $scope.filterErrorActive
+                    break;
+                case "warning":
+                    return $scope.filterWarningActive
+                    break;
+                case "info":
+                    return $scope.filterInfoActive
+                    break;
+            }
+        }
+
+        $scope.getResultFilePath = function(result) {
+            return $scope.report.files[result.file].path
+        }
+
+        $scope.getResultTestVariation = function(result) {
+            return $scope.report.tests[result.test].variation
+        }
     }
 ]);

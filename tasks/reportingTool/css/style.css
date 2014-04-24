@@ -19,6 +19,71 @@ body{
     padding-left: 30px;
 }
 
+.gj-filters {
+    margin-bottom: 30px;
+}
+
+.gj-filter {
+    border: none;
+    color: white;
+    float: left;
+    height: 35px;
+    width: 33.33%;
+    width: calc(100%/3);
+}
+
+.gj-filter:focus {
+    outline: 0
+}
+
+.gj-filter-info {
+    background-color: #261C1C;
+}
+
+.gj-filter-info-active,
+.gj-report-title {
+    background-color: #594F4F;
+}
+
+.gj-filter-error {
+    background-color: #7F0000
+}
+
+.gj-filter-error.gj-filter-error-active,
+.gj-report-error .gj-report-title {
+    background-color: firebrick;
+}
+
+.gj-filter-warning {
+    background-color: #855300
+}
+
+.gj-filter-warning.gj-filter-warning-active,
+.gj-report-warning .gj-report-title {
+    background-color: darkgoldenrod;
+}
+
+.gj-filter-search {
+    -webkit-appearance: none;
+
+    background: #EEEEEE;
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: block;
+    font-size: 17px;
+    height: 30px;
+    margin: 0 auto 15px;
+    text-align: center;
+    width: 33.33%;
+    width: calc(100%/3)
+}
+
+.gj-filter-search:focus {
+    outline: 0
+}
+
 .gj-report {
     width: 100%;
 }
@@ -28,17 +93,12 @@ body{
     box-sizing: border-box;
 }
 
-.gj-report-last-child {
-    border-bottom: 1px solid #594F4F;
-}
-
 .gj-report-title,
 .gj-report-result {
     padding: 5px
 }
 
 .gj-report-title {
-    background-color: #594F4F;
     color: white;
 }
 
@@ -72,4 +132,7 @@ body{
     clear: both;
     height: 0;
 }
-.clearfix { display: inline-block; }
+
+[ng-click] {
+    cursor: pointer;
+}

@@ -26,9 +26,9 @@ module.exports = (grunt) ->
         options: {
           tests:
             'default:excludes':
-              'no-ids': ['#', 'error']
-#              'no unbuffered comments': [ /(\/\\*)|(\\*\/)/i, 'error']
-#              'no hardcoded colors': [': #', 'bad idea']
+              'no-id': ['#', 'error']
+              'no-unbuffered-comments': [ /(\/\\*)|(\\*\/)/i, 'warning']
+              'no-hardcoded-colors': [': #', 'info']
 #            'default:doneSingle': ['test']
           "testHowitwouldbe":
             "jusftify-noid": # name of the test

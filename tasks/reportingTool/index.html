@@ -11,9 +11,22 @@
 <!--<div class="gj-report clearfix" ng-repeat="file in report.files">-->
     <!--<div class="gj-report-title"><i class="fa fa-file-text-o" alt="File"></i> File <strong>{{file.name}}</strong> was tested</div>-->
 <!--</div>-->
-<div class="gj-report clearfix" ng-repeat="result in report.results" ng-class="{'gj-report-last-child':$last}">
-    <div class="gj-report-title"><i class="fa fa-file-text-o" alt="File"></i> Report for {{report.files[result.file].path}}</div>
-    <div class="gj-report-result"><i class="fa fa-list-ol" alt="Line number"></i> {{result.line}}: {{report.tests[result.test].variation}}</div>
+<div class="gj-filters">
+    <div class="clearfix">
+        <button class="gj-filter gj-filter-info" ng-click="toggleFilterInfo()" ng-class="{'gj-filter-info-active':isFilterInfoActive()}">Info</button>
+        <button class="gj-filter gj-filter-warning" ng-click="toggleFilterWarning()" ng-class="{'gj-filter-warning-active':isFilterWarningActive()}">Warnings</button>
+        <button class="gj-filter gj-filter-error" ng-click="toggleFilterError()" ng-class="{'gj-filter-error-active':isFilterErrorActive()}">Errors</button>
+    </div>
+
+    <!--<input class="gj-filter-search" type="text" placeholder="Search" ng-model="search.line"/>-->
+</div>
+
+<div class="gj-report clearfix"
+     ng-repeat="result in report.results"
+     ng-class="{error: 'gj-report-error', warning: 'gj-report-warning'}[getResultSeverity(result)]"
+     ng-show="isSeverityFilterActive(result)">
+    <div class="gj-report-title"><i class="fa fa-file-text-o" alt="File"></i> Report for {{getResultFilePath(result)}}</div>
+    <div class="gj-report-result"><i class="fa fa-list-ol" alt="Line number"></i> {{result.line}}: {{getResultTestVariation(result)}}</div>
     <div class="gj-report-result"><i class="fa fa-comment-o" alt="Test description"></i> {{result.content}}</div>
 </div>
 
