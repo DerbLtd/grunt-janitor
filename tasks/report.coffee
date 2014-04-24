@@ -118,15 +118,6 @@ set = ( test, file, severity, lineNumbers, description ) ->
 
 prettyPrint = () ->
 
-  files = {}
-  results = {}
-  tests = {}
-
-  report =
-    files: files
-    results: results
-    tests: tests
-
   grunt.log.subhead "Test results:"
   grunt.log.writeln ''
 
@@ -147,14 +138,9 @@ prettyPrint = () ->
     grunt.log.writeln '   content    "' + result.content + '"'
     grunt.log.writeln ''
 
-    # Reporter
-
-    files[result.file] = _result.files[result.file]
-    tests[result.test] = _result.tests[result.test]
-    results[idResult] = result
-
-  grunt.file.write 'tasks/reportingTool/data/report.json', JSON.stringify(report, null, '\t')
-  grunt.log.verbose.writeln JSON.stringify(report, null, '\t')
+  # Write the report
+  grunt.file.write 'tasks/reportingTool/data/report.json', JSON.stringify(_result, null, '\t')
+  grunt.log.verbose.writeln JSON.stringify(_result, null, '\t')
 
 module.exports =
   set: set
