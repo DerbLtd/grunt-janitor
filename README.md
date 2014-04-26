@@ -1,3 +1,7 @@
+# Disclaimer - alpha state
+
+This project is still very much a WIP, the API can change drastically at any time until we consider it stable enough to label it as a beta.
+
 [![Build Status](https://travis-ci.org/kevin-smets/grunt-janitor.png?branch=master)](https://travis-ci.org/kevin-smets/grunt-janitor)
 
 # grunt-janitor
