@@ -8,11 +8,16 @@ body{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    background-color: #262626;
     color: gold;
     font-family: "roboto";
     font-weight: 300;
     margin: 0;
+    padding-bottom: 80px;
+}
+
+body,
+.gj-footer {
+    background-color: #262626;
 }
 
 .gj-title {
@@ -111,9 +116,9 @@ body{
     border-top: 1px dotted #594F4F;
     bottom: 0;
     font-size: 12px;
-    height: 22px;
+    height: 30px;
     left: 0;
-    line-height: 20px;
+    line-height: 26px;
     position: fixed;
     right: 0;
     text-align: center;

@@ -26,8 +26,8 @@
      ng-class="{error: 'gj-report-error', warning: 'gj-report-warning'}[getResultSeverity(result)]"
      ng-show="isSeverityFilterActive(result)">
     <div class="gj-report-title"><i class="fa fa-file-text-o" alt="File"></i> Report for {{getResultFilePath(result)}}</div>
-    <div class="gj-report-result"><i class="fa fa-list-ol" alt="Line number"></i> {{result.line}}: {{getResultTestVariation(result)}}</div>
-    <div class="gj-report-result"><i class="fa fa-comment-o" alt="Test description"></i> {{result.content}}</div>
+    <div class="gj-report-result"><i class="fa fa-list-ol" alt="Line number"></i> {{result.line}}: {{result.content}}</div>
+    <div class="gj-report-result"><i class="fa fa-comment-o" alt="Test description"></i> {{getResultTestVariation(result)}}</div>
 </div>
 
 <div class="gj-footer">
