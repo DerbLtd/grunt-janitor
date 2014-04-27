@@ -63,6 +63,7 @@ file = ( path )->
     _id
 
   _id = report.registerFile( getFileName(), getFiletype(), getFilePath() )
+  grunt.log.writeln JSON.stringify(report)
 
   a =
     getContent: getContent

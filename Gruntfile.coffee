@@ -25,25 +25,17 @@ module.exports = (grunt) ->
       sass:
         options: {
           tests:
-            'default:excludes':
-              'no-id': ['#', 'error']
-              'no-unbuffered-comments': [ /(\/\\*)|(\\*\/)/i, 'warning']
-              'no-hardcoded-colors': [': #', 'info']
-#            'default:doneSingle': ['test']
-          "testHowitwouldbe":
-            "jusftify-noid": # name of the test
-              "default:justify": [] # the test function and its parameters
-              "chain":  # optional parameter
-                "no-id": # test name
-                  "default:excludes": [
-                    '#',
-                    'error'
-                    ] # test function and its parameters
+            noId:
+              pattern: '#'
+              severity: 'error'
+              condition: 'excluded'
+              justifiable: 'yes'
 
-# op deze manier kunnen we tests aan elkaar chainen
-# elke test returned dan een result object
-# deze results kunnen dan worden herwerkt door een bovenliggende test
-
+            noUnbufferedComments:
+              pattern: /(\/\\*)|(\\*\/)/i
+              severity: 'warning'
+              condition: 'excluded'
+              justifiable: 'no'
 
         }
         files: [

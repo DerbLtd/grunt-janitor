@@ -71,23 +71,24 @@ _getSeverity = ( severity ) ->
     name: severity
   id
 
-_registerResult = ( file, test, lineNr, severity ) ->
-  idSeverity = _getSeverity( severity )
-  _markResult( 'tests', test.id )
-  _markResult( 'files', file.id() )
-  _markResult( 'severities', idSeverity )
-  id = _getResultId( 'results' )
-  _result.results[ id ] =
-    file: file.id()
-    test: test.id
-    severity: idSeverity
-    line: lineNr
-    content: if lineNr then file.getLine( lineNr ) else ''
+#_registerResult = ( file, test, lineNr) ->
+
+#  idSeverity = _getSeverity( severity )
+#  _markResult( 'tests', test.id )
+#  _markResult( 'files', file.id() )
+#  _markResult( 'severities', idSeverity )
+##  id = _getResultId( 'results' )
+#  _result.results[ id ] =
+#    file: file.id()
+#    test: test.id
+#    severity: idSeverity
+#    line: lineNr
+#    content: if lineNr then file.getLine( lineNr ) else ''
 #  grunt.log.writeln  _result.results[ id ]['file']
 #  grunt.log.writeln  _result.results[ id ]['test']
 #  grunt.log.writeln  _result.results[ id ]['line']
 #  grunt.log.writeln  _result.results[ id ]['content']
-  id
+#  id
 
 registerTest = (name, variation, args)->
   id = _getResultId( 'tests' )
@@ -100,43 +101,65 @@ registerTest = (name, variation, args)->
 
 registerFile = ( name, filetype, path )->
   id = _getResultId( 'files' )
-  _result.files[ id ] =
+  _result.files[id] =
     name: name
     filetype: filetype
     path: path
+
+  grunt.log.writeln JSON.stringify(_result)
   id
 
-set = ( test, file, severity, lineNumbers, description ) ->
-  if util.isArray lineNumbers
-    for lineNumber in lineNumbers
-      _registerResult file, test, lineNumber, severity
-  else if !isNaN(parseFloat(lineNumbers)) && isFinite(lineNumbers)
-    _registerResult file, test, lineNumber, severity
-  else
-    _registerResult file, test, false, severity
-  return true
+set = (file, testName, taskOptions, lineNumbers) ->
+  test = taskOptions.tests[testName]
 
-prettyPrint = () ->
+  _result.tests[testName] = test
+
+  grunt.log.debug file.getFilePath()
+
+  testCounter = 0
+  for lineNumber in lineNumbers
+    id = _getResultId( 'results' )
+
+    _result.results[id] =
+      file: file.getFilePath()
+      test: testName
+      severity: taskOptions.tests[testName].severity
+      line: lineNumber
+      content: file.getLine(lineNumber)
+
+
+    testCounter++
+
+    grunt.log.debug(
+      grunt.log.table(
+        [10, 20, 80]
+        [test.severity, file.getFileName() + ':' + lineNumber, file.getLine(lineNumber)]
+      )
+    )
+
+#    _registerResult file, test, lineNumber
+
+prettyPrint = ->
 
   grunt.log.subhead "Test results:"
   grunt.log.writeln ''
 
-  for idResult, result of _result.results
-    # Logger
-
-    color = ''
-    switch _result.severities[result.severity]['name']
-      when _severities.INFO then color = 'blue'
-      when _severities.WARNING then color = 'yellow'
-      when _severities.ERROR then color = 'red'
-
-    grunt.log.writeln (_result.severities[result.severity]['name'] + ':')[color], idResult
-    grunt.log.writeln '   file      ', _result.files[result.file]['name'] + " (id:" + result.file + ")"
-    grunt.log.writeln '   test      ', _result.tests[result.test]['name'] + " (id:" + result.test + ")"
-    grunt.log.writeln '   severity  ', _result.severities[result.severity]['name'] + " (id:" + result.severity + ")"
-    grunt.log.writeln '   line      ', result.line
-    grunt.log.writeln '   content    "' + result.content + '"'
-    grunt.log.writeln ''
+#  for idResult, result of _result.results
+#    # Logger
+#
+#    color = ''
+#    switch _result.severities[result.severity]['name']
+#      when _severities.INFO then color = 'blue'
+#      when _severities.WARNING then color = 'yellow'
+#      when _severities.ERROR then color = 'red'
+#
+#    grunt.log.writeln (_result.severities[result.severity]['name'] + ':')[color], idResult
+#    grunt.log.writeln '   file      ', _result.files[result.file]['name'] + " (id:" + result.file + ")"
+#    grunt.log.writeln '   test      ', _result.tests[result.test]['name'] + " (id:" + result.test + ")"
+#    grunt.log.writeln '   severity  ', _result.severities[result.severity]['name'] + " (id:" + result.severity + ")"
+#    grunt.log.writeln '   line      ', result.line
+#    grunt.log.writeln '   content    "' + result.content + '"'
+#    grunt.log.writeln ''
 
   # Write the report
   grunt.file.write 'tasks/reportingTool/data/report.json', JSON.stringify(_result, null, '\t')

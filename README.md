@@ -6,7 +6,7 @@ This project is still very much a WIP, the API can change drastically at any tim
 
 # grunt-janitor
 
-> Code pattern checker for grunt. Cleanup on isle 4!
+> Code pattern checker for grunt. Cleanup on aisle 4!
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
