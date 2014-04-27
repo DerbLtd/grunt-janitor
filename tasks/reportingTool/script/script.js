@@ -54,7 +54,7 @@ app.controller("mainController", [
         }
 
         $scope.getResultSeverity = function(result) {
-            return $scope.report.severities[result.severity].name
+            return $scope.report.tests[result.test].severity
         }
 
         $scope.isSeverityFilterActive = function(result) {
@@ -76,8 +76,8 @@ app.controller("mainController", [
             return $scope.report.files[result.file].path
         }
 
-        $scope.getResultTestVariation = function(result) {
-            return $scope.report.tests[result.test].variation
+        $scope.getTestDescription = function(result) {
+            return $scope.report.tests[result.test].description
         }
     }
 ]);

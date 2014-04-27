@@ -26,7 +26,6 @@ _conf =
 _result =
   files: {}
   tests: {}
-  severities: {}
   results: {}
 
 _getLine = ( lineNumber, file )->
@@ -71,62 +70,37 @@ _getSeverity = ( severity ) ->
     name: severity
   id
 
-#_registerResult = ( file, test, lineNr) ->
-
-#  idSeverity = _getSeverity( severity )
-#  _markResult( 'tests', test.id )
-#  _markResult( 'files', file.id() )
-#  _markResult( 'severities', idSeverity )
-##  id = _getResultId( 'results' )
-#  _result.results[ id ] =
-#    file: file.id()
-#    test: test.id
-#    severity: idSeverity
-#    line: lineNr
-#    content: if lineNr then file.getLine( lineNr ) else ''
-#  grunt.log.writeln  _result.results[ id ]['file']
-#  grunt.log.writeln  _result.results[ id ]['test']
-#  grunt.log.writeln  _result.results[ id ]['line']
-#  grunt.log.writeln  _result.results[ id ]['content']
-#  id
-
-registerTest = (name, variation, args)->
+registerTest = (test)->
   id = _getResultId( 'tests' )
-  _result.tests[ id ] =
-    name: if variation? then name + ' - ' + variation else name
-    test: name
-    variation: variation
-    arguments: args
+  grunt.log.debug JSON.stringify(test)
+  _result.tests[ id ] = test
   id
 
-registerFile = ( name, filetype, path )->
+registerFile = ( name, fileType, path )->
   id = _getResultId( 'files' )
   _result.files[id] =
     name: name
-    filetype: filetype
+    fileType: fileType
     path: path
-
-  grunt.log.writeln JSON.stringify(_result)
   id
 
 set = (file, testName, taskOptions, lineNumbers) ->
   test = taskOptions.tests[testName]
 
-  _result.tests[testName] = test
+  testId = registerTest(test)
 
-  grunt.log.debug file.getFilePath()
+  grunt.log.debug JSON.stringify(test[0])
 
   testCounter = 0
   for lineNumber in lineNumbers
     id = _getResultId( 'results' )
 
     _result.results[id] =
-      file: file.getFilePath()
-      test: testName
+      file: file.getId()
+      test: testId
       severity: taskOptions.tests[testName].severity
       line: lineNumber
       content: file.getLine(lineNumber)
-
 
     testCounter++
 
@@ -136,8 +110,6 @@ set = (file, testName, taskOptions, lineNumbers) ->
         [test.severity, file.getFileName() + ':' + lineNumber, file.getLine(lineNumber)]
       )
     )
-
-#    _registerResult file, test, lineNumber
 
 prettyPrint = ->
 

@@ -63,7 +63,6 @@ file = ( path )->
     _id
 
   _id = report.registerFile( getFileName(), getFiletype(), getFilePath() )
-  grunt.log.writeln JSON.stringify(report)
 
   a =
     getContent: getContent
@@ -73,7 +72,7 @@ file = ( path )->
     getFilePath: getFilePath
     getLine: getLine
     findLineNumbers: findLineNumbers
-    id: getId
+    getId: getId
 
 
 # export the modules
