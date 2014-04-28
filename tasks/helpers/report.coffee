@@ -86,7 +86,7 @@ set = (file, testName, taskOptions, lineNumbers) ->
 
 prettyPrint = ->
   # Write the report
-  grunt.file.write __dirname + '/../data/reporter/report.json', JSON.stringify(_result, null, '\t')
+  grunt.file.write __dirname + '/../reporter/data/report.json', JSON.stringify(_result, null, '\t')
   grunt.log.verbose.writeln JSON.stringify(_result, null, '\t')
 
 module.exports =
