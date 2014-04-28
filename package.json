@@ -1,7 +1,7 @@
 {
   "name": "grunt-janitor",
   "description": "Code pattern checker for grunt. Cleanup on aisle 4!",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/kevin/grunt-janitor",
   "author": {
     "name": "Kevin Smets",
