@@ -21,7 +21,7 @@ function loadJSON(callback) {
 
 var jsonData;
 
-var app = angular.module("main", []);
+var app = angular.module("main", ['ngAnimate']);
 
 app.controller("mainController", [
     '$scope', '$log', function($scope) {

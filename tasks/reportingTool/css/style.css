@@ -68,22 +68,22 @@ body,
     background-color: darkgoldenrod;
 }
 
-.gj-filter-search {
-    -webkit-appearance: none;
+/*.gj-filter-search {*/
+    /*-webkit-appearance: none;*/
 
-    background: #EEEEEE;
-    border: none;
-    border-radius: 3px;
-    box-shadow: none;
-    box-sizing: border-box;
-    display: block;
-    font-size: 17px;
-    height: 30px;
-    margin: 0 auto 15px;
-    text-align: center;
-    width: 33.33%;
-    width: calc(100%/3)
-}
+    /*background: #EEEEEE;*/
+    /*border: none;*/
+    /*border-radius: 3px;*/
+    /*box-shadow: none;*/
+    /*box-sizing: border-box;*/
+    /*display: block;*/
+    /*font-size: 17px;*/
+    /*height: 30px;*/
+    /*margin: 0 auto 15px;*/
+    /*text-align: center;*/
+    /*width: 33.33%;*/
+    /*width: calc(100%/3)*/
+/*}*/
 
 .gj-filter-search:focus {
     outline: 0
@@ -91,6 +91,31 @@ body,
 
 .gj-report {
     width: 100%;
+}
+
+.gj-report.ng-enter-stagger {
+    -webkit-transition-delay:0.1s;
+    transition-delay:0.1s
+
+    /* this is here to avoid accidental CSS inheritance */
+    -webkit-transition-duration:0;
+    transition-duration:0;
+}
+
+.gj-report.ng-hide-add,
+.gj-report.ng-hide-remove {
+    -webkit-transition: 0.3s ease-out all;
+    transition: 0.3s ease-out all;
+
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+
+    display: block!important;
+}
+
+.gj-report.ng-hide {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 .gj-report,
