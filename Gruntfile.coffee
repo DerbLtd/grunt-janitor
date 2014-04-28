@@ -25,25 +25,19 @@ module.exports = (grunt) ->
       sass:
         options: {
           tests:
-            'default:excludes':
-              'no-id': ['#', 'error']
-              'no-unbuffered-comments': [ /(\/\\*)|(\\*\/)/i, 'warning']
-              'no-hardcoded-colors': [': #', 'info']
-#            'default:doneSingle': ['test']
-          "testHowitwouldbe":
-            "jusftify-noid": # name of the test
-              "default:justify": [] # the test function and its parameters
-              "chain":  # optional parameter
-                "no-id": # test name
-                  "default:excludes": [
-                    '#',
-                    'error'
-                    ] # test function and its parameters
+            noId:
+              pattern: '#'
+              severity: 'error'
+              condition: 'excluded'
+              justifiable: 'yes'
+              description: "Don't use ID selectors"
 
-# op deze manier kunnen we tests aan elkaar chainen
-# elke test returned dan een result object
-# deze results kunnen dan worden herwerkt door een bovenliggende test
-
+            noUnbufferedComments:
+              pattern: /(\/\\*)|(\\*\/)/i
+              severity: 'warning'
+              condition: 'excluded'
+              justifiable: 'no'
+              description: "Only use unbuffered comments (// not /*)"
 
         }
         files: [
@@ -67,21 +61,3 @@ module.exports = (grunt) ->
     "janitor:sass"
   ]
   return
-
-#echo "\nCoffeeScript: use strict\n"
-#git --no-pager grep --break --heading --files-without-match -nP "^'use strict'|\"use strict\"" -- '*.coffee'
-#
-#echo "\nJade: use unbuffered comments\n"
-#git --no-pager grep --break --heading -nP '//\s?(?![-, www])' -- '*.jade'
-#
-#echo "\nSass: use unbuffered comments\n"
-#git --no-pager grep --break --heading -nP '(/\*)|(\*/)' -- '*.sass'
-#
-#echo "\nSass: don't use hardcoded color codes\n"
-#git --no-pager grep --break --heading -nP ': #' -- '*.sass'
-#
-#echo "\nCoffeeScript: use unbuffered comments\n"
-#git --no-pager grep --break --heading -nP '###' -- '*.coffee'
-#
-#echo "\nCoffeeScript: no console.log\n"
-#git --no-pager grep --break --heading -nP 'console\.log' -- '*.coffee'

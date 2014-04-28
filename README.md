@@ -6,7 +6,7 @@ This project is still very much a WIP, the API can change drastically at any tim
 
 # grunt-janitor
 
-> Code pattern checker for grunt. Cleanup on isle 4!
+> Code pattern checker for grunt. Cleanup on aisle 4!
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -95,4 +95,6 @@ Run "node node_modules/.bin/http-server tasks/reportingTool/" and point your fav
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+v0.2.0 - refactor of the config
+v0.1.1 - reporter v1
 v0.1.0 - initial release
