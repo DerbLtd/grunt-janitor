@@ -26,14 +26,14 @@ module.exports = (grunt) ->
         options: {
           tests:
             noId:
-              pattern: '#'
+              pattern: new RegExp('([^:] #|^#)')
               severity: 'error'
               condition: 'excluded'
               justifiable: 'yes'
               description: "Don't use ID selectors"
 
             noUnbufferedComments:
-              pattern: /(\/\\*)|(\\*\/)/i
+              pattern: new RegExp('(\/\\*)|(\\*\/)')
               severity: 'warning'
               condition: 'excluded'
               justifiable: 'no'
