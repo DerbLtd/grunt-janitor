@@ -89,7 +89,14 @@ grunt.initConfig({
 ```
 ## Report
 
-Run "node node_modules/.bin/http-server tasks/reportingTool/" and point your favourite browser to http://localhost:8080
+```
+npm install -g http-server
+http-server
+```
+
+Then point your favorite browser to http://localhost:8080 (or 808X, depending on the one http-server reports).
+
+TODO: The serve path has to become configurable
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

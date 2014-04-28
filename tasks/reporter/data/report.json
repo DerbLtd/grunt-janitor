@@ -1,0 +1,69 @@
+{
+	"files": {
+		"gjFileId-1": {
+			"name": "test.sass",
+			"fileType": "sass",
+			"path": "test/fixtures/test.sass"
+		}
+	},
+	"tests": {
+		"gjTestId-1": {
+			"pattern": {},
+			"severity": "error",
+			"condition": "excluded",
+			"justifiable": "yes",
+			"description": "Don't use ID selectors"
+		},
+		"gjTestId-2": {
+			"pattern": {},
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (// not /*)"
+		}
+	},
+	"results": {
+		"gjResultId-1": {
+			"file": "gjFileId-1",
+			"test": "gjTestId-1",
+			"severity": "error",
+			"line": 2,
+			"content": "  #test"
+		},
+		"gjResultId-2": {
+			"file": "gjFileId-1",
+			"test": "gjTestId-2",
+			"severity": "warning",
+			"line": 1,
+			"content": ".some-class /* unbuffered comment */"
+		},
+		"gjResultId-3": {
+			"file": "gjFileId-1",
+			"test": "gjTestId-2",
+			"severity": "warning",
+			"line": 13,
+			"content": "/* unbuffered comment"
+		},
+		"gjResultId-4": {
+			"file": "gjFileId-1",
+			"test": "gjTestId-2",
+			"severity": "warning",
+			"line": 14,
+			"content": "/*"
+		},
+		"gjResultId-5": {
+			"file": "gjFileId-1",
+			"test": "gjTestId-2",
+			"severity": "warning",
+			"line": 16,
+			"content": "  */"
+		},
+		"gjResultId-6": {
+			"file": "gjFileId-1",
+			"test": "gjTestId-2",
+			"severity": "warning",
+			"line": 17,
+			"content": "  /* unbuffered comment */"
+		}
+	}
+}
