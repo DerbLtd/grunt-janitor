@@ -1,7 +1,11 @@
+"use strict"
+
 #
 #   all the tests stuff my dear old chap
 #
-"use strict"
+
+FILE_NAME = 'test.coffee'
+
 grunt = require "grunt"
 report = require './report'
 util = require './util'
@@ -9,18 +13,8 @@ util = require './util'
 _tests = {}
 
 _executeTest = ( testname, variation, testOptions, file, taskOptions ) ->
-  if !_tests[ testname ]
-    grunt.log.error 'The test ', testname, ' could not be located.', "\n"
-    return false
-  thisWhomWeCallThis =
-    test:
-      id: report.registerTest( testname, variation, testOptions )
-      name: testname
-      options: testOptions
-      variation: variation
-    taskOptions: taskOptions
-    file: file
-  _tests[testname].fn.apply thisWhomWeCallThis, testOptions
+  lineNumbers = file.findLineNumbers(testOptions.pattern)
+  report.set(file, testname, taskOptions, lineNumbers)
 
 #
 # public methods
@@ -46,13 +40,8 @@ registerTest = ( key, description, fn, options ) ->
 executeTests = ( file, options ) ->
   tests = options.tests
   for testname, test of tests
-    if util.isArray( test )
-      _executeTest testname, false, test, file, options
-    else
-      for variationName, variation of test
-        _executeTest testname, variationName, variation, file, options
-  true
-
+    grunt.log.debug 'Found test ' + testname + ' with the parameters ' + JSON.stringify(test)
+    _executeTest testname, false, test, file, options
 
 # export the modules
 module.exports =

@@ -72,7 +72,7 @@ file = ( path )->
     getFilePath: getFilePath
     getLine: getLine
     findLineNumbers: findLineNumbers
-    id: getId
+    getId: getId
 
 
 # export the modules
