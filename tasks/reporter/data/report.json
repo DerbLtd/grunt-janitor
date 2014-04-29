@@ -1,9 +1,54 @@
 {
 	"files": {
 		"gjFileId-1": {
-			"name": "test.sass",
+			"name": "fail_001.sass",
 			"fileType": "sass",
-			"path": "test/fixtures/test.sass"
+			"path": "test/fixtures/sass/noIds/fail_001.sass"
+		},
+		"gjFileId-2": {
+			"name": "success_001.sass",
+			"fileType": "sass",
+			"path": "test/fixtures/sass/noIds/success_001.sass"
+		},
+		"gjFileId-3": {
+			"name": "fail_001.sass",
+			"fileType": "sass",
+			"path": "test/fixtures/sass/noUnbufferedComments/fail_001.sass"
+		},
+		"gjFileId-4": {
+			"name": "success_001.sass",
+			"fileType": "sass",
+			"path": "test/fixtures/sass/noUnbufferedComments/success_001.sass"
+		},
+		"gjFileId-5": {
+			"name": "fail_001.coffee",
+			"fileType": "coffee",
+			"path": "test/fixtures/coffee/noUnbufferedComments/fail_001.coffee"
+		},
+		"gjFileId-6": {
+			"name": "success_001.coffee",
+			"fileType": "coffee",
+			"path": "test/fixtures/coffee/noUnbufferedComments/success_001.coffee"
+		},
+		"gjFileId-7": {
+			"name": "fail_001.coffee",
+			"fileType": "coffee",
+			"path": "test/fixtures/coffee/noUseStrict/fail_001.coffee"
+		},
+		"gjFileId-8": {
+			"name": "fail_002.coffee",
+			"fileType": "coffee",
+			"path": "test/fixtures/coffee/noUseStrict/fail_002.coffee"
+		},
+		"gjFileId-9": {
+			"name": "success_001.coffee",
+			"fileType": "coffee",
+			"path": "test/fixtures/coffee/noUseStrict/success_001.coffee"
+		},
+		"gjFileId-10": {
+			"name": "success_002.coffee",
+			"fileType": "coffee",
+			"path": "test/fixtures/coffee/noUseStrict/success_002.coffee"
 		}
 	},
 	"tests": {
@@ -13,7 +58,8 @@
 			"condition": "excluded",
 			"justifiable": "yes",
 			"description": "Don't use ID selectors",
-			"name": "noId"
+			"name": "noId",
+			"status": "success"
 		},
 		"gjTestId-2": {
 			"pattern": {},
@@ -21,7 +67,188 @@
 			"condition": "excluded",
 			"justifiable": "no",
 			"description": "Only use unbuffered comments (// not /*)",
-			"name": "noUnbufferedComments"
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-3": {
+			"pattern": {},
+			"severity": "error",
+			"condition": "excluded",
+			"justifiable": "yes",
+			"description": "Don't use ID selectors",
+			"name": "noId",
+			"status": "success"
+		},
+		"gjTestId-4": {
+			"pattern": {},
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (// not /*)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-5": {
+			"pattern": {},
+			"severity": "error",
+			"condition": "excluded",
+			"justifiable": "yes",
+			"description": "Don't use ID selectors",
+			"name": "noId",
+			"status": "success"
+		},
+		"gjTestId-6": {
+			"pattern": {},
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (// not /*)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-7": {
+			"pattern": {},
+			"severity": "error",
+			"condition": "excluded",
+			"justifiable": "yes",
+			"description": "Don't use ID selectors",
+			"name": "noId",
+			"status": "success"
+		},
+		"gjTestId-8": {
+			"pattern": {},
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (// not /*)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-9": {
+			"pattern": "use strict",
+			"severity": "critical",
+			"condition": "included",
+			"lines": [
+				1
+			],
+			"justifiable": "no",
+			"description": "use strict has to be declared",
+			"name": "useStrict",
+			"status": "success"
+		},
+		"gjTestId-10": {
+			"pattern": "###",
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (# not ###)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-11": {
+			"pattern": "use strict",
+			"severity": "critical",
+			"condition": "included",
+			"lines": [
+				1
+			],
+			"justifiable": "no",
+			"description": "use strict has to be declared",
+			"name": "useStrict",
+			"status": "success"
+		},
+		"gjTestId-12": {
+			"pattern": "###",
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (# not ###)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-13": {
+			"pattern": "use strict",
+			"severity": "critical",
+			"condition": "included",
+			"lines": [
+				1
+			],
+			"justifiable": "no",
+			"description": "use strict has to be declared",
+			"name": "useStrict",
+			"status": "success"
+		},
+		"gjTestId-14": {
+			"pattern": "###",
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (# not ###)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-15": {
+			"pattern": "use strict",
+			"severity": "critical",
+			"condition": "included",
+			"lines": [
+				1
+			],
+			"justifiable": "no",
+			"description": "use strict has to be declared",
+			"name": "useStrict",
+			"status": "success"
+		},
+		"gjTestId-16": {
+			"pattern": "###",
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (# not ###)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-17": {
+			"pattern": "use strict",
+			"severity": "critical",
+			"condition": "included",
+			"lines": [
+				1
+			],
+			"justifiable": "no",
+			"description": "use strict has to be declared",
+			"name": "useStrict",
+			"status": "success"
+		},
+		"gjTestId-18": {
+			"pattern": "###",
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (# not ###)",
+			"name": "noUnbufferedComments",
+			"status": "success"
+		},
+		"gjTestId-19": {
+			"pattern": "use strict",
+			"severity": "critical",
+			"condition": "included",
+			"lines": [
+				1
+			],
+			"justifiable": "no",
+			"description": "use strict has to be declared",
+			"name": "useStrict",
+			"status": "success"
+		},
+		"gjTestId-20": {
+			"pattern": "###",
+			"severity": "warning",
+			"condition": "excluded",
+			"justifiable": "no",
+			"description": "Only use unbuffered comments (# not ###)",
+			"name": "noUnbufferedComments",
+			"status": "success"
 		}
 	},
 	"results": {
@@ -29,43 +256,64 @@
 			"file": "gjFileId-1",
 			"test": "gjTestId-1",
 			"severity": "error",
-			"line": 2,
-			"content": "  #test"
+			"line": 3,
+			"content": "#test"
 		},
 		"gjResultId-2": {
-			"file": "gjFileId-1",
-			"test": "gjTestId-2",
+			"file": "gjFileId-3",
+			"test": "gjTestId-5",
+			"severity": "error",
+			"line": 3,
+			"content": "#test"
+		},
+		"gjResultId-3": {
+			"file": "gjFileId-3",
+			"test": "gjTestId-6",
 			"severity": "warning",
 			"line": 1,
 			"content": ".some-class /* unbuffered comment */"
 		},
-		"gjResultId-3": {
-			"file": "gjFileId-1",
-			"test": "gjTestId-2",
-			"severity": "warning",
-			"line": 13,
-			"content": "/* unbuffered comment"
-		},
 		"gjResultId-4": {
-			"file": "gjFileId-1",
-			"test": "gjTestId-2",
+			"file": "gjFileId-3",
+			"test": "gjTestId-6",
 			"severity": "warning",
 			"line": 14,
-			"content": "/*"
+			"content": "/* unbuffered comment"
 		},
 		"gjResultId-5": {
-			"file": "gjFileId-1",
-			"test": "gjTestId-2",
+			"file": "gjFileId-3",
+			"test": "gjTestId-6",
 			"severity": "warning",
 			"line": 16,
-			"content": "  */"
+			"content": "/*"
 		},
 		"gjResultId-6": {
-			"file": "gjFileId-1",
-			"test": "gjTestId-2",
+			"file": "gjFileId-3",
+			"test": "gjTestId-6",
 			"severity": "warning",
-			"line": 17,
+			"line": 18,
+			"content": "  */"
+		},
+		"gjResultId-7": {
+			"file": "gjFileId-3",
+			"test": "gjTestId-6",
+			"severity": "warning",
+			"line": 20,
 			"content": "  /* unbuffered comment */"
+		},
+		"gjResultId-8": {
+			"file": "gjFileId-5",
+			"test": "gjTestId-10",
+			"severity": "warning",
+			"line": 3,
+			"content": "###"
+		},
+		"gjResultId-9": {
+			"file": "gjFileId-5",
+			"test": "gjTestId-10",
+			"severity": "warning",
+			"line": 5,
+			"content": "###"
 		}
 	}
 }

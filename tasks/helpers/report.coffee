@@ -63,23 +63,27 @@ set = (file, testName, taskOptions, lineNumbers) ->
 
   testId = registerTest(test)
 
-  if lineNumbers
+  if test.status is 'failed'
+
     grunt.log.subhead 'file: ' + file.getFilePath()
+    switch test.condition
+      when 'included'
+        grunt.log.writeln '\t' + test.severity + ': ' + test.description
+      else
+        for lineNumber in lineNumbers
+          # Register the result
+          id = _getResultId( 'results' )
 
-    for lineNumber in lineNumbers
-      # Register the result
-      id = _getResultId( 'results' )
+          _result.results[id] =
+            file: file.getId()
+            test: testId
+            severity: taskOptions.tests[testName].severity
+            line: lineNumber
+            content: file.getLine(lineNumber)
 
-      _result.results[id] =
-        file: file.getId()
-        test: testId
-        severity: taskOptions.tests[testName].severity
-        line: lineNumber
-        content: file.getLine(lineNumber)
-
-      grunt.log.writeln '\tline ' + lineNumber + ': ' + test.severity + ' - ' + test.description
-      grunt.log.writeln '\tcontent: ' + file.getLine(lineNumber)
-      grunt.log.writeln ''
+          grunt.log.writeln '\tline ' + lineNumber + ': ' + test.severity + ' - ' + test.description
+          grunt.log.writeln '\tcontent: ' + file.getLine(lineNumber)
+          grunt.log.writeln ''
 
 prettyPrint = ->
   # Write the report

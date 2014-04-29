@@ -64,7 +64,7 @@ file = ( path )->
 
   _id = report.registerFile( getFileName(), getFiletype(), getFilePath() )
 
-  a =
+  arr =
     getContent: getContent
     getContentByLine: getContentByLine
     getFiletype: getFiletype
@@ -73,6 +73,7 @@ file = ( path )->
     getLine: getLine
     findLineNumbers: findLineNumbers
     getId: getId
+  arr
 
 
 # export the modules

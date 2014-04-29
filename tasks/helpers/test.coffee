@@ -12,19 +12,48 @@ util = require './util'
 
 _tests = {}
 
-_executeTest = ( testname, variation, testOptions, file, taskOptions ) ->
-  lineNumbers = file.findLineNumbers(testOptions.pattern)
+_conditions =
+  INCLUDED: 'included'
+  EXCLUDED: 'excluded'
+
+_statuses =
+  FAIL: 'failed'
+  SUCCESS: 'success'
+
+_testExclusion = (file, pattern) ->
+  if file.findLineNumbers(pattern)
+    return _statuses.FAIL
+  _statuses.SUCCESS
+
+_testInclusion = (file, test) ->
+  lineNumbers = file.findLineNumbers(test.pattern)
+  if lineNumbers
+    if test.lines
+      if lineNumbers.equals(test.lines)
+        return _statuses.SUCCESS
+      else
+        return _statuses.FAIL
+    return _statuses.SUCCESS
+  _statuses.FAIL
+
+_executeTest = ( testname, variation, test, file, taskOptions ) ->
+
+  switch test.condition
+    when _conditions.EXCLUDED then testStatus = _testExclusion(file, test.pattern)
+    else
+      testStatus = _testInclusion(file, test)
+
+  test.status = testStatus
+
+  grunt.log.debug '_executeTest: test ' + test.name + ' has the status "' + testStatus + '" for ' + file.getFileName()
+
+  lineNumbers = file.findLineNumbers(test.pattern)
   report.set(file, testname, taskOptions, lineNumbers)
 
 #
 # public methods
 #
 
-# register a test
-# @param  string  key the key for this test
-# @param  string  description describe the test
-# @param  function  fn the test function
-# @param  object|undefined  options the options for the test
 registerTest = ( testName, test ) ->
   test.name = testName
 #  grunt.log.debug 'Registered test ' + JSON.stringify(test)

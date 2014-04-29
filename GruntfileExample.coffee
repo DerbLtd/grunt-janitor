@@ -34,28 +34,38 @@ module.exports = (grunt) ->
                 # Possible values: 'critical' | 'error' | 'warning' | 'recommendation' | 'info' | 'none'
               condition: 'excluded'
                 # Optional, defaults to excluded
-                # Possible values:| 'included' | 'excluded'
+                # Possible values: 'included' | 'excluded'
+              line: 1
+                # Unstable, not sure if this will stay in
+                # Optional
+                # Possible values: 1 | 2 | ...
+                # TODO: <improvement> support ranges
               justifiable: 'no'
                 # Optional, defaults to 'yes'
-                # Possible values: 'no' | 'yes' | 'warning' | '...'
+                # Possible values: 'no' | 'yes' | 'warning' | ...
               description: 'No IDs should be used in Sass files'
                 # Optional
-
+                # The description of the test, this will be used as output in the console and the reporter
+              chainCondition: true
+                # Optional, defaults to true, only used when chain is defined
+                # Possible values: true | false
+                # If this condition is true/false, run the chained test
               chain:
                 # Optional
+                # This will chain another test if the condition of the parent has been met
                 noIdOtherPredefinedTest:
                   test: 'noUnbufferedComments'
                     # Optional, if not defined, the 'pattern' parameter is required
                     # Possible values: another test name
                   condition: 'excluded'
-                  occurs: 'before'
+                  occur: 'before'
                     # Optional, defaults to after
-                    # Possible values: 'before' | 'after' | 'sameLine' # defaults to after
-                  lines: '1'
+                    # Possible values: 'before' | 'after' | 'sameLine'
+                  occurLines: '1'
                     # to  'x' # optional extra for the condition, if not specified, any number is good
                   file: 'otherFile.jade'
-                    # Optional
-                    # Runs this test on another file, defaults to the same file
+                    # Optional, defaults to the same file
+                    # Runs this test on (an)other file(s)
 
                 noIdNoSomethingElse:
                   pattern: 'derb'

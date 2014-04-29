@@ -42,7 +42,32 @@ module.exports = (grunt) ->
         }
         files: [
           expand: true
-          src: ["test.sass"]
+          src: ["**/*.sass"]
+          cwd: "test/fixtures/"
+        ]
+
+      coffee:
+        options: {
+          tests:
+            useStrict:
+              pattern: 'use strict'
+              severity: 'critical'
+              condition: 'included'
+              lines: [1]
+              justifiable: 'no'
+              description: "use strict has to be declared"
+
+            noUnbufferedComments:
+              pattern: '###'
+              severity: 'warning'
+              condition: 'excluded'
+              justifiable: 'no'
+              description: "Only use unbuffered comments (# not ###)"
+
+        }
+        files: [
+          expand: true
+          src: ["**/*.coffee"]
           cwd: "test/fixtures/"
         ]
 
