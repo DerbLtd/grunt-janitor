@@ -12,14 +12,16 @@
 			"severity": "error",
 			"condition": "excluded",
 			"justifiable": "yes",
-			"description": "Don't use ID selectors"
+			"description": "Don't use ID selectors",
+			"name": "noId"
 		},
 		"gjTestId-2": {
 			"pattern": {},
 			"severity": "warning",
 			"condition": "excluded",
 			"justifiable": "no",
-			"description": "Only use unbuffered comments (// not /*)"
+			"description": "Only use unbuffered comments (// not /*)",
+			"name": "noUnbufferedComments"
 		}
 	},
 	"results": {

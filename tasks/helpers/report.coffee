@@ -47,7 +47,6 @@ _getResultId = ( type )->
 
 registerTest = (test)->
   id = _getResultId( 'tests' )
-  grunt.log.debug JSON.stringify(test)
   _result.tests[ id ] = test
   id
 
@@ -63,8 +62,6 @@ set = (file, testName, taskOptions, lineNumbers) ->
   test = taskOptions.tests[testName]
 
   testId = registerTest(test)
-
-  grunt.log.debug JSON.stringify(test[0])
 
   if lineNumbers
     grunt.log.subhead 'file: ' + file.getFilePath()
